@@ -1,0 +1,84 @@
+%{
+#ifdef YYDEBUG
+    yydebug = 1;
+#endif
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "parser.hpp"
+
+// Function declaration
+int yyerror(const char *s);
+int yylex();
+%}
+%output  "parser.cpp"
+%defines "parser.hpp"
+
+%token DOLLAR_SIGN COMMA COLON OPEN_BRACKET CLOSED_BRACKETS PLUS EQUAL MINUS
+%token GLOBAL EXTERN SECTION WORD SKIP ASCII EQU END
+%token HALT INT IRET CALL RET JMP BEQ BNE BGT PUSH POP XCHG ADD SUB MUL DIV
+%token NOT AND OR XOR SHL SHR LD ST CSRRD CSRWR
+%token GPRX CSRX SYMBOL LITERAL STRING
+%token EOL
+
+%%
+start:
+    | start statement
+    ;
+
+statement:
+    instruction
+    | data_declaration
+    | SYMBOL        { /* Consume SYMBOL without printing anything */ }
+    | EOL
+    ;
+
+instruction:
+    HALT
+    | INT
+    | IRET
+    | CALL
+    | RET
+    | JMP
+    | BEQ
+    | BNE
+    | BGT
+    | PUSH
+    | POP
+    | XCHG
+    | ADD
+    | SUB
+    | MUL
+    | DIV
+    | NOT
+    | AND
+    | OR
+    | XOR
+    | SHL
+    | SHR
+    | LD
+    | ST
+    | CSRRD
+    | CSRWR
+    ;
+
+data_declaration:
+    GLOBAL
+    | EXTERN
+    | SECTION
+    | WORD
+    | SKIP
+    | ASCII
+    | EQU
+    | END
+    ;
+
+
+%%
+
+int yyerror(const char *s){
+    return 0;
+}
+
+
+
