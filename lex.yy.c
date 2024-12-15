@@ -873,12 +873,12 @@ case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
 #line 10 "lekser.l"
-{ printf("\n"); return EOL; }
+{ return EOL; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 11 "lekser.l"
-{ printf(" "); }
+{ }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
@@ -888,268 +888,268 @@ YY_RULE_SETUP
 case 4:
 YY_RULE_SETUP
 #line 13 "lekser.l"
-{ printf("DOLLAR_SIGN"); return DOLLAR_SIGN; }
+{ return DOLLAR_SIGN; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 14 "lekser.l"
-{ printf("COMMA"); return COMMA; }
+{ return COMMA; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 15 "lekser.l"
-{ printf("COLON"); return COLON; }
+{ return COLON; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 16 "lekser.l"
-{ printf("OPEN_BRACKET"); return OPEN_BRACKET; }
+{ return OPEN_BRACKET; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 17 "lekser.l"
-{ printf("CLOSED_BRACKETS"); return CLOSED_BRACKETS; }
+{ return CLOSED_BRACKET; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 18 "lekser.l"
-{ printf("PLUS"); return PLUS; }
+{ return PLUS; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 19 "lekser.l"
-{ printf("EQUAL"); return EQUAL; }
+{ return EQUAL; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 20 "lekser.l"
-{ printf("MINUS"); return MINUS; }
+{ return MINUS; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 21 "lekser.l"
-{ printf("GLOBAL"); return GLOBAL; }
+{ return GLOBAL; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 22 "lekser.l"
-{ printf("EXTERN"); return EXTERN; }
+{ return EXTERN; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 23 "lekser.l"
-{ printf("SECTION"); return SECTION; }
+{ return SECTION; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 24 "lekser.l"
-{ printf("WORD"); return WORD; }
+{ return WORD; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 25 "lekser.l"
-{ printf("SKIP"); return SKIP; }
+{ return SKIP; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 26 "lekser.l"
-{ printf("ASCII"); return ASCII; }
+{ return ASCII; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 27 "lekser.l"
-{ printf("EQU"); return EQU; }
+{ return EQU; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 28 "lekser.l"
-{ printf("END"); return END; }
+{ return END; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 29 "lekser.l"
-{ printf("HALT"); return HALT; }
+{ return HALT; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 30 "lekser.l"
-{ printf("INT"); return INT; }
+{ return INT; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 31 "lekser.l"
-{ printf("IRET"); return IRET; }
+{ return IRET; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 32 "lekser.l"
-{ printf("CALL"); return CALL; }
+{ return CALL; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 33 "lekser.l"
-{ printf("RET"); return RET; }
+{ return RET; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 #line 34 "lekser.l"
-{ printf("JMP"); return JMP; }
+{ return JMP; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 35 "lekser.l"
-{ printf("BEQ"); return BEQ; }
+{ return BEQ; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
 #line 36 "lekser.l"
-{ printf("BNE"); return BNE; }
+{ return BNE; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 37 "lekser.l"
-{ printf("BGT"); return BGT; }
+{ return BGT; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 38 "lekser.l"
-{ printf("PUSH"); return PUSH; }
+{ return PUSH; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 #line 39 "lekser.l"
-{ printf("POP"); return POP; }
+{ return POP; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 #line 40 "lekser.l"
-{ printf("XCHG"); return XCHG; }
+{ return XCHG; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 41 "lekser.l"
-{ printf("ADD"); return ADD; }
+{ return ADD; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
 #line 42 "lekser.l"
-{ printf("SUB"); return SUB; }
+{ return SUB; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
 #line 43 "lekser.l"
-{ printf("MUL"); return MUL; }
+{ return MUL; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
 #line 44 "lekser.l"
-{ printf("DIV"); return DIV; }
+{ return DIV; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
 #line 45 "lekser.l"
-{ printf("NOT"); return NOT; }
+{ return NOT; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
 #line 46 "lekser.l"
-{ printf("AND"); return AND; }
+{ return AND; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
 #line 47 "lekser.l"
-{ printf("OR"); return OR; }
+{ return OR; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
 #line 48 "lekser.l"
-{ printf("XOR"); return XOR; }
+{ return XOR; }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
 #line 49 "lekser.l"
-{ printf("SHL"); return SHL; }
+{ return SHL; }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
 #line 50 "lekser.l"
-{ printf("SHR"); return SHR; }
+{ return SHR; }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
 #line 51 "lekser.l"
-{ printf("LD"); return LD; }
+{ return LD; }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
 #line 52 "lekser.l"
-{ printf("ST"); return ST; }
+{ return ST; }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
 #line 53 "lekser.l"
-{ printf("CSRRD"); return CSRRD; }
+{ return CSRRD; }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
 #line 54 "lekser.l"
-{ printf("CSRWR"); return CSRWR; }
+{ return CSRWR; }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
 #line 55 "lekser.l"
-{ printf("GPRX"); return GPRX; }
+{ return GPRX; }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
 #line 56 "lekser.l"
-{ printf("GPRX"); return GPRX; }
+{ return GPRX; }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
 #line 57 "lekser.l"
-{ printf("GPRX"); return GPRX; }
+{ return GPRX; }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
 #line 58 "lekser.l"
-{ printf("CSRX"); return CSRX; }
+{ return CSRX; }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
 #line 59 "lekser.l"
-{ printf("CSRX"); return CSRX; }
+{ return CSRX; }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
 #line 60 "lekser.l"
-{ printf("CSRX"); return CSRX; }
+{ return CSRX; }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
 #line 61 "lekser.l"
-{ printf("SYMBOL"); return SYMBOL; }
+{ return SYMBOL; }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
 #line 62 "lekser.l"
-{ printf("LITERAL (hex)"); return LITERAL; }
+{ return LITERAL; }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
 #line 63 "lekser.l"
-{ printf("LITERAL (decimal)"); return LITERAL; }
+{ return LITERAL; }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
 #line 64 "lekser.l"
-{ printf("LITERAL (binary)"); return LITERAL; }
+{ return LITERAL; }
 	YY_BREAK
 case 56:
 /* rule 56 can match eol */
 YY_RULE_SETUP
 #line 65 "lekser.l"
-{ printf("STRING"); return STRING; }
+{ return STRING; }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP

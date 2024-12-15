@@ -1,7 +1,7 @@
 all : asm
 
 asm: lekser.l parser.ypp
-	bison -d parser.ypp
+	bison -d -t parser.ypp
 	flex lekser.l
 	g++ -o asembler test.cpp parser.cpp lex.yy.c -lfl 
 

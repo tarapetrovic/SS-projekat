@@ -7,60 +7,60 @@
 %option case-insensitive
 %%
 
-\n            { printf("\n"); return EOL; }
-[\t \r]       { printf(" "); }
+\n            { return EOL; }
+[\t \r]       { }
 "#"[^\n]*     { /* ignore comments */ }
-"$"           { printf("DOLLAR_SIGN"); return DOLLAR_SIGN; }
-","           { printf("COMMA"); return COMMA; }
-":"           { printf("COLON"); return COLON; }
-"\["          { printf("OPEN_BRACKET"); return OPEN_BRACKET; }
-"\]"          { printf("CLOSED_BRACKETS"); return CLOSED_BRACKETS; }
-"+"           { printf("PLUS"); return PLUS; }
-"="           { printf("EQUAL"); return EQUAL; }
-"-"           { printf("MINUS"); return MINUS; }
-".global"     { printf("GLOBAL"); return GLOBAL; }
-".extern"     { printf("EXTERN"); return EXTERN; }
-".section"    { printf("SECTION"); return SECTION; }
-".word"       { printf("WORD"); return WORD; }
-".skip"       { printf("SKIP"); return SKIP; }
-".ascii"      { printf("ASCII"); return ASCII; }
-".equ"        { printf("EQU"); return EQU; }
-".end"        { printf("END"); return END; }
-"halt"        { printf("HALT"); return HALT; }
-"int"         { printf("INT"); return INT; }
-"iret"        { printf("IRET"); return IRET; }
-"call"        { printf("CALL"); return CALL; }
-"ret"         { printf("RET"); return RET; }
-"jmp"         { printf("JMP"); return JMP; }
-"beq"         { printf("BEQ"); return BEQ; }
-"bne"         { printf("BNE"); return BNE; }
-"bgt"         { printf("BGT"); return BGT; }
-"push"        { printf("PUSH"); return PUSH; }
-"pop"         { printf("POP"); return POP; }
-"xchg"        { printf("XCHG"); return XCHG; }
-"add"         { printf("ADD"); return ADD; }
-"sub"         { printf("SUB"); return SUB; }
-"mul"         { printf("MUL"); return MUL; }
-"div"         { printf("DIV"); return DIV; }
-"not"         { printf("NOT"); return NOT; }
-"and"         { printf("AND"); return AND; }
-"or"          { printf("OR"); return OR; }
-"xor"         { printf("XOR"); return XOR; }
-"shl"         { printf("SHL"); return SHL; }
-"shr"         { printf("SHR"); return SHR; }
-"ld"          { printf("LD"); return LD; }
-"st"          { printf("ST"); return ST; }
-"csrrd"       { printf("CSRRD"); return CSRRD; }
-"csrwr"       { printf("CSRWR"); return CSRWR; }
-%r([0-9]|1[0-5])  { printf("GPRX"); return GPRX; }
-"%sp"         { printf("GPRX"); return GPRX; }
-"%pc"         { printf("GPRX"); return GPRX; }
-"%status"     { printf("CSRX"); return CSRX; }
-"%handler"    { printf("CSRX"); return CSRX; }
-"%cause"      { printf("CSRX"); return CSRX; }
-[a-zA-Z][a-zA-Z0-9_]* { printf("SYMBOL"); return SYMBOL; }
-0x[0-9a-fA-F]+ { printf("LITERAL (hex)"); return LITERAL; }
--?[1-9][0-9]* { printf("LITERAL (decimal)"); return LITERAL; }
-[01]+   { printf("LITERAL (binary)"); return LITERAL; }
-\"[^\"]*\"  { printf("STRING"); return STRING; }
+"$"           { return DOLLAR_SIGN; }
+","           { return COMMA; }
+":"           { return COLON; }
+"\["          { return OPEN_BRACKET; }
+"\]"          { return CLOSED_BRACKET; }
+"+"           { return PLUS; }
+"="           { return EQUAL; }
+"-"           { return MINUS; }
+".global"     { return GLOBAL; }
+".extern"     { return EXTERN; }
+".section"    { return SECTION; }
+".word"       { return WORD; }
+".skip"       { return SKIP; }
+".ascii"      { return ASCII; }
+".equ"        { return EQU; }
+".end"        { return END; }
+"halt"        { return HALT; }
+"int"         { return INT; }
+"iret"        { return IRET; }
+"call"        { return CALL; }
+"ret"         { return RET; }
+"jmp"         { return JMP; }
+"beq"         { return BEQ; }
+"bne"         { return BNE; }
+"bgt"         { return BGT; }
+"push"        { return PUSH; }
+"pop"         { return POP; }
+"xchg"        { return XCHG; }
+"add"         { return ADD; }
+"sub"         { return SUB; }
+"mul"         { return MUL; }
+"div"         { return DIV; }
+"not"         { return NOT; }
+"and"         { return AND; }
+"or"          { return OR; }
+"xor"         { return XOR; }
+"shl"         { return SHL; }
+"shr"         { return SHR; }
+"ld"          { return LD; }
+"st"          { return ST; }
+"csrrd"       { return CSRRD; }
+"csrwr"       { return CSRWR; }
+%r([0-9]|1[0-5])  { return GPRX; }
+"%sp"         { return GPRX; }
+"%pc"         { return GPRX; }
+"%status"     { return CSRX; }
+"%handler"    { return CSRX; }
+"%cause"      { return CSRX; }
+[a-zA-Z][a-zA-Z0-9_]* { return SYMBOL; }
+0x[0-9a-fA-F]+ { return LITERAL; }
+-?[1-9][0-9]* { return LITERAL; }
+[01]+   { return LITERAL; }
+\"[^\"]*\"  { return STRING; }
 .             { printf("Greska %s ", yytext); }

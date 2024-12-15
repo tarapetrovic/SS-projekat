@@ -38,7 +38,7 @@
 # define YY_YY_PARSER_HPP_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
-# define YYDEBUG 0
+# define YYDEBUG 1
 #endif
 #if YYDEBUG
 extern int yydebug;
@@ -53,7 +53,7 @@ extern int yydebug;
     COMMA = 259,
     COLON = 260,
     OPEN_BRACKET = 261,
-    CLOSED_BRACKETS = 262,
+    CLOSED_BRACKET = 262,
     PLUS = 263,
     EQUAL = 264,
     MINUS = 265,

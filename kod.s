@@ -1,9 +1,3 @@
-# Testing all possible lexer rules
-
-.equ term_out, 0xFFFFFF00       # Test EQU with hex literal
-.equ term_in, 0xFFFFFF04        # Test EQU with hex literal
-.equ ascii_code, 84             # Test EQU with decimal literal
-
 .extern my_counter              # Test EXTERN
 .global handler                 # Test GLOBAL
 .section my_code_handler        # Test SECTION
@@ -44,26 +38,18 @@ my_string_test:
 
 # Testing symbol
 symbol_test:
-    .equ symbol_one, 0x1234      # Test SYMBOL with EQU
-    .equ symbol_two, 0x5678      # Test SYMBOL with EQU
     my_label:                     # Test LABEL (symbol as a label)
         .word 1234                # Test word value
 
 # Testing comments
 # This is a comment and should be ignored by the lexer
 
-# Testing literals
-test_literals:
-    .equ hex_literal, 0xABCDEF   # Test hex literal
-    .equ decimal_literal, 1234   # Test decimal literal
-    .equ binary_literal, 0b1011  # Test binary literal
-
 # Testing the syntax with registers
 test_registers:
     push %r1                     # Test PUSH with register
     push %r2                     # Test PUSH with register
     csrrd %cause, %r1            # Test CSRRD with register
-    ld %r2, $2                   # Test LD with register
+    ld $2, %r2                   # Test LD with register
     st %r1, term_out             # Test ST with register
 
 # End of tests
