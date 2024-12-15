@@ -10,7 +10,6 @@
 \n            { printf("\n"); return EOL; }
 [\t \r]       { printf(" "); }
 "#"[^\n]*     { /* ignore comments */ }
-
 "$"           { printf("DOLLAR_SIGN"); return DOLLAR_SIGN; }
 ","           { printf("COMMA"); return COMMA; }
 ":"           { printf("COLON"); return COLON; }
@@ -19,7 +18,6 @@
 "+"           { printf("PLUS"); return PLUS; }
 "="           { printf("EQUAL"); return EQUAL; }
 "-"           { printf("MINUS"); return MINUS; }
-
 ".global"     { printf("GLOBAL"); return GLOBAL; }
 ".extern"     { printf("EXTERN"); return EXTERN; }
 ".section"    { printf("SECTION"); return SECTION; }
@@ -52,22 +50,17 @@
 "shr"         { printf("SHR"); return SHR; }
 "ld"          { printf("LD"); return LD; }
 "st"          { printf("ST"); return ST; }
-
 "csrrd"       { printf("CSRRD"); return CSRRD; }
 "csrwr"       { printf("CSRWR"); return CSRWR; }
-"%r([0-9] | 1[0-5])"  { printf("GPRX"); return GPRX; }
+%r([0-9]|1[0-5])  { printf("GPRX"); return GPRX; }
 "%sp"         { printf("GPRX"); return GPRX; }
 "%pc"         { printf("GPRX"); return GPRX; }
 "%status"     { printf("CSRX"); return CSRX; }
 "%handler"    { printf("CSRX"); return CSRX; }
 "%cause"      { printf("CSRX"); return CSRX; }
-
-"[a-zA-Z][a-zA-Z0-9_]*" { printf("SYMBOL"); return SYMBOL; }
-
-"0x[0-9a-fA-F]+" { printf("LITERAL (hex)"); return LITERAL; }
-"-?[1-9][0-9]*" { printf("LITERAL (decimal)"); return LITERAL; }
-"[01]+"       { printf("LITERAL (binary)"); return LITERAL; }
-
-"\"[^\"]*\""  { printf("STRING"); return STRING; }
-
-.             { printf("Greska"); }
+[a-zA-Z][a-zA-Z0-9_]* { printf("SYMBOL"); return SYMBOL; }
+0x[0-9a-fA-F]+ { printf("LITERAL (hex)"); return LITERAL; }
+-?[1-9][0-9]* { printf("LITERAL (decimal)"); return LITERAL; }
+[01]+   { printf("LITERAL (binary)"); return LITERAL; }
+\"[^\"]*\"  { printf("STRING"); return STRING; }
+.             { printf("Greska %s ", yytext); }
