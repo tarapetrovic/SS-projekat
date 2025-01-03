@@ -18,8 +18,16 @@ int yylex();
 %token GLOBAL EXTERN SECTION WORD SKIP ASCII EQU END
 %token HALT INT IRET CALL RET JMP BEQ BNE BGT PUSH POP XCHG ADD SUB MUL DIV
 %token NOT AND OR XOR SHL SHR LD ST CSRRD CSRWR
-%token GPRX CSRX SYMBOL LITERAL STRING
 %token EOL
+
+%union {
+    int intval;
+    char *strval;
+    char charval;
+}
+
+%token <intval> LITERAL GPRX CSRX
+%token <strval> SYMBOL STRING
 
 %%
 program:
@@ -41,79 +49,79 @@ statement:
     ;
 
 label:
-    SYMBOL COLON               { printf("SYMBOL COLON "); }
+    SYMBOL COLON               { printf("SYMBOL %s COLON ", $1); }
     ;
 
 directive:
     END                        { printf("END "); }
-    | SKIP LITERAL             { printf("SKIP LITERAL "); }
-    | ASCII STRING             { printf("ASCII STRING "); }
-    | SECTION SYMBOL           { printf("SECTION SYMBOL "); }
+    | SKIP LITERAL             { printf("SKIP LITERAL %d ", $2); }
+    | ASCII STRING             { printf("ASCII STRING %s ", $2); }
+    | SECTION SYMBOL           { printf("SECTION SYMBOL %s ", $2); }
     | GLOBAL list_of_global_symbols 
     | EXTERN list_of_extern_symbols 
     | WORD list_of_symbols_or_literals
     ;
 
 list_of_global_symbols:
-    SYMBOL                     { printf("GLOBAL SYMBOL "); }
+    SYMBOL                     { printf("GLOBAL SYMBOL %s ", $1); }
     | list_of_global_symbols COMMA SYMBOL { printf(" COMMA SYMBOL "); }
     ;
 
 list_of_extern_symbols:
-    SYMBOL                     { printf("EXTERN SYMBOL "); }
-    | list_of_extern_symbols COMMA SYMBOL { printf( "COMMA SYMBOL "); }
+    SYMBOL                     { printf("EXTERN SYMBOL %s ", $1); }
+    | list_of_extern_symbols COMMA SYMBOL { printf( "COMMA SYMBOL %s ", $3); }
     ;
 
 list_of_symbols_or_literals:
-    SYMBOL                     { printf("WORD SYMBOL "); }
-    | LITERAL                  { printf("WORD LITERAL "); }
-    | list_of_symbols_or_literals COMMA SYMBOL { printf("COMMA SYMBOL "); }
-    | list_of_symbols_or_literals COMMA LITERAL { printf("COMMA LITERAL "); }
+    SYMBOL                     { printf("WORD SYMBOL %s ", $1); }
+    | LITERAL                  { printf("WORD LITERAL %d ", $1); }
+    | list_of_symbols_or_literals COMMA SYMBOL { printf("COMMA SYMBOL %s ", $3); }
+    | list_of_symbols_or_literals COMMA LITERAL { printf("COMMA LITERAL %d ", $3); }
     ;
 
 instruction:
     HALT                       { printf("HALT "); }
     | INT                      { printf("INT "); }
     | IRET                     { printf("IRET "); }
-    | CALL LITERAL             { printf("CALL LITERAL "); }
-    | CALL SYMBOL              { printf("CALL SYMBOL "); }
+    | CALL LITERAL             { printf("CALL LITERAL %d ", $2); }
+    | CALL SYMBOL              { printf("CALL SYMBOL %s ", $2); }
     | RET                      { printf("RET "); }
-    | JMP LITERAL              { printf("JMP LITERAL "); }
-    | JMP SYMBOL               { printf("JMP SYMBOL "); }
-    | BEQ GPRX COMMA GPRX COMMA LITERAL { printf("BEQ GPRX COMMA GPRX COMMA LITERAL "); }
-    | BEQ GPRX COMMA GPRX COMMA SYMBOL { printf("BEQ GPRX COMMA GPRX COMMA SYMBOL "); }
-    | BNE GPRX COMMA GPRX COMMA LITERAL { printf("BNE GPRX COMMA GPRX COMMA LITERAL "); }
-    | BNE GPRX COMMA GPRX COMMA SYMBOL { printf("BNE GPRX COMMA GPRX COMMA SYMBOL "); }
-    | BGT GPRX COMMA GPRX COMMA LITERAL { printf("BGT GPRX COMMA GPRX COMMA LITERAL "); }
-    | BGT GPRX COMMA GPRX COMMA SYMBOL { printf("BGT GPRX COMMA GPRX COMMA SYMBOL "); }
-    | PUSH GPRX                { printf("PUSH GPRX "); }
-    | POP GPRX                 { printf("POP GPRX "); }
-    | XCHG GPRX COMMA GPRX     { printf("XCHG GPRX COMMA GPRX "); }
-    | ADD GPRX COMMA GPRX      { printf("ADD GPRX COMMA GPRX "); }
-    | SUB GPRX COMMA GPRX      { printf("SUB GPRX COMMA GPRX "); }
-    | MUL GPRX COMMA GPRX      { printf("MUL GPRX COMMA GPRX "); }
-    | DIV GPRX COMMA GPRX      { printf("DIV GPRX COMMA GPRX "); }
-    | NOT GPRX                 { printf("NOT GPRX "); }
-    | AND GPRX COMMA GPRX      { printf("AND GPRX COMMA GPRX "); }
-    | OR GPRX COMMA GPRX       { printf("OR GPRX COMMA GPRX "); }
-    | SHL GPRX COMMA GPRX      { printf("SHL GPRX COMMA GPRX "); }
-    | SHR GPRX COMMA GPRX      { printf("SHR GPRX COMMA GPRX "); }
-    | LD DOLLAR_SIGN LITERAL COMMA GPRX { printf("LD DOLLAR_SIGN LITERAL COMMA GPRX "); }
-    | LD DOLLAR_SIGN SYMBOL COMMA GPRX { printf("LD DOLLAR_SIGN SYMBOL COMMA GPRX "); }
-    | LD LITERAL COMMA GPRX    { printf("LD LITERAL COMMA GPRX "); }
-    | LD SYMBOL COMMA GPRX     { printf("LD SYMBOL COMMA GPRX "); }
-    | LD GPRX COMMA GPRX       { printf("LD GPRX COMMA GPRX "); }
-    | LD OPEN_BRACKET GPRX CLOSED_BRACKET COMMA GPRX { printf("LD [GPRX] COMMA GPRX "); }
-    | LD OPEN_BRACKET GPRX PLUS LITERAL CLOSED_BRACKET COMMA GPRX { printf("LD [GPRX PLUS LITERAL] COMMA GPRX "); }
-    | LD OPEN_BRACKET GPRX PLUS SYMBOL CLOSED_BRACKET COMMA GPRX { printf("LD [GPRX PLUS SYMBOL] COMMA GPRX "); }
-    | ST GPRX COMMA LITERAL    { printf("ST GPRX COMMA LITERAL "); }
-    | ST GPRX COMMA SYMBOL     { printf("ST GPRX COMMA SYMBOL "); }
-    | ST GPRX COMMA GPRX       { printf("ST GPRX COMMA GPRX "); }
-    | ST GPRX COMMA OPEN_BRACKET GPRX CLOSED_BRACKET { printf("ST GPRX COMMA [GPRX] "); }
-    | ST GPRX COMMA OPEN_BRACKET GPRX PLUS LITERAL CLOSED_BRACKET { printf("ST GPRX COMMA [GPRX PLUS LITERAL] "); }
-    | ST GPRX COMMA OPEN_BRACKET GPRX PLUS SYMBOL CLOSED_BRACKET { printf("ST GPRX COMMA [GPRX PLUS SYMBOL] "); }
-    | CSRRD CSRX COMMA GPRX    { printf("CSRRD CSRX COMMA GPRX "); }
-    | CSRWR GPRX COMMA CSRX    { printf("CSRWR GPRX COMMA CSRX "); }
+    | JMP LITERAL              { printf("JMP LITERAL %d ", $2); }
+    | JMP SYMBOL               { printf("JMP SYMBOL %s ", $2); }
+    | BEQ GPRX COMMA GPRX COMMA LITERAL { printf("BEQ GPRX %d COMMA GPRX %d COMMA LITERAL %d ", $2, $4, $6); }
+    | BEQ GPRX COMMA GPRX COMMA SYMBOL { printf("BEQ GPRX %d COMMA GPRX %d COMMA SYMBOL %s ", $2, $4, $6); }
+    | BNE GPRX COMMA GPRX COMMA LITERAL { printf("BNE GPRX %d COMMA GPRX %d COMMA LITERAL %d ", $2, $4, $6); }
+    | BNE GPRX COMMA GPRX COMMA SYMBOL { printf("BNE GPRX %d COMMA GPRX %d COMMA SYMBOL %s ", $2, $4, $6); }
+    | BGT GPRX COMMA GPRX COMMA LITERAL { printf("BGT GPRX %d COMMA GPRX %d COMMA LITERAL %d ", $2, $4, $6); }
+    | BGT GPRX COMMA GPRX COMMA SYMBOL { printf("BGT GPRX %d COMMA GPRX %d COMMA SYMBOL %s ", $2, $4, $6); }
+    | PUSH GPRX                { printf("PUSH GPRX %d ", $2); }
+    | POP GPRX                 { printf("POP GPRX %d "), $2; }
+    | XCHG GPRX COMMA GPRX     { printf("XCHG GPRX %d COMMA GPRX %d ", $2, $4); }
+    | ADD GPRX COMMA GPRX      { printf("ADD GPRX %d COMMA GPRX %d ", $2, $4); }
+    | SUB GPRX COMMA GPRX      { printf("SUB GPRX %d COMMA GPRX %d ", $2, $4); }
+    | MUL GPRX COMMA GPRX      { printf("MUL GPRX %d COMMA GPRX %d ", $2, $4); }
+    | DIV GPRX COMMA GPRX      { printf("DIV GPRX %d COMMA GPRX %d ", $2, $4); }
+    | NOT GPRX                 { printf("NOT GPRX %d ", $2); }
+    | AND GPRX COMMA GPRX      { printf("AND GPRX %d COMMA GPRX %d ", $2, $4); }
+    | OR GPRX COMMA GPRX       { printf("OR GPRX %d COMMA GPRX %d ", $2, $4); }
+    | SHL GPRX COMMA GPRX      { printf("SHL GPRX %d COMMA GPRX %d ", $2, $4); }
+    | SHR GPRX COMMA GPRX      { printf("SHR GPRX %d COMMA GPRX %d ", $2, $4); }
+    | LD DOLLAR_SIGN LITERAL COMMA GPRX { printf("LD DOLLAR_SIGN LITERAL %d COMMA GPRX %d ", $3, $5); }
+    | LD DOLLAR_SIGN SYMBOL COMMA GPRX { printf("LD DOLLAR_SIGN SYMBOL %s COMMA GPRX %d ", $3, $5); }
+    | LD LITERAL COMMA GPRX    { printf("LD LITERAL %d COMMA GPRX %d ", $2, $4); }
+    | LD SYMBOL COMMA GPRX     { printf("LD SYMBOL %s COMMA GPRX %d ", $2, $4); }
+    | LD GPRX COMMA GPRX       { printf("LD GPRX %d COMMA GPRX %d ", $2, $4); }
+    | LD OPEN_BRACKET GPRX CLOSED_BRACKET COMMA GPRX { printf("LD [GPRX %d] COMMA GPRX %d ", $3, $6); }
+    | LD OPEN_BRACKET GPRX PLUS LITERAL CLOSED_BRACKET COMMA GPRX { printf("LD [GPRX %d PLUS LITERAL %d] COMMA GPRX %d ", $3, $5, $8); }
+    | LD OPEN_BRACKET GPRX PLUS SYMBOL CLOSED_BRACKET COMMA GPRX { printf("LD [GPRX %d PLUS SYMBOL %s] COMMA GPRX %d ", $3, $5, $8); }
+    | ST GPRX COMMA LITERAL    { printf("ST GPRX %d COMMA LITERAL %d ", $2, $4); }
+    | ST GPRX COMMA SYMBOL     { printf("ST GPRX %d COMMA SYMBOL %s ", $2, $4); }
+    | ST GPRX COMMA GPRX       { printf("ST GPRX %d COMMA GPRX %d ", $2, $4); }
+    | ST GPRX COMMA OPEN_BRACKET GPRX CLOSED_BRACKET { printf("ST GPRX %d COMMA [GPRX %d] ", $2, $5); }
+    | ST GPRX COMMA OPEN_BRACKET GPRX PLUS LITERAL CLOSED_BRACKET { printf("ST GPRX %d COMMA [GPRX %d PLUS LITERAL %d] ", $2, $5, $7); }
+    | ST GPRX COMMA OPEN_BRACKET GPRX PLUS SYMBOL CLOSED_BRACKET { printf("ST GPRX %d COMMA [GPRX %d PLUS SYMBOL %s] ", $2, $5, $7); }
+    | CSRRD CSRX COMMA GPRX    { printf("CSRRD CSRX %d COMMA GPRX %d ", $2, $4); }
+    | CSRWR GPRX COMMA CSRX    { printf("CSRWR GPRX %d COMMA CSRX %d ", $2, $4); }
     ;
 %%
 

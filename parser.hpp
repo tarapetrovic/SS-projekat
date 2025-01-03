@@ -91,18 +91,29 @@ extern int yydebug;
     ST = 297,
     CSRRD = 298,
     CSRWR = 299,
-    GPRX = 300,
-    CSRX = 301,
-    SYMBOL = 302,
-    LITERAL = 303,
-    STRING = 304,
-    EOL = 305
+    EOL = 300,
+    LITERAL = 301,
+    GPRX = 302,
+    CSRX = 303,
+    SYMBOL = 304,
+    STRING = 305
   };
 #endif
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+union YYSTYPE
+{
+#line 23 "parser.ypp"
+
+    int intval;
+    char *strval;
+    char charval;
+
+#line 114 "parser.hpp"
+
+};
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif

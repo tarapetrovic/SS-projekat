@@ -2,6 +2,8 @@
 //inicijalizacije? includovi za 3. deo leksera? include parsera
 #include <stdio.h>
 #include "parser.hpp"
+
+extern YYSTYPE yylval;
 %}
 %option noyywrap
 %option case-insensitive
@@ -52,15 +54,15 @@
 "st"          { return ST; }
 "csrrd"       { return CSRRD; }
 "csrwr"       { return CSRWR; }
-%r([0-9]|1[0-5])  { return GPRX; }
-"%sp"         { return GPRX; }
-"%pc"         { return GPRX; }
-"%status"     { return CSRX; }
-"%handler"    { return CSRX; }
-"%cause"      { return CSRX; }
-[a-zA-Z][a-zA-Z0-9_]* { return SYMBOL; }
-0x[0-9a-fA-F]+ { return LITERAL; }
--?[1-9][0-9]* { return LITERAL; }
-[01]+   { return LITERAL; }
-\"[^\"]*\"  { return STRING; }
+%r([0-9]|1[0-5])  { yylval.intval = atoi(yytext + 2); return GPRX; }
+"%sp"         { yylval.strval = strdup("sp"); return GPRX; } // da li je ok da koristim ovaj strdup il treba da napravim neki svoji copystring? dal mzd svuda strdup(yytext) umesto pojedinacnog kucanja?
+"%pc"         { yylval.strval = strdup("pc"); return GPRX; } // prosledjujem li ime kao pc, ili da ga odavde odmah prosledim kao 15? to ce mi biti greska
+"%status"     { yylval.strval = strdup("status"); return CSRX; }
+"%handler"    { yylval.strval = strdup("handler"); return CSRX; }
+"%cause"      { yylval.strval = strdup("cause"); return CSRX; }
+[a-zA-Z][a-zA-Z0-9_]* { yylval.strval = strdup(yytext); return SYMBOL; }
+0x[0-9a-fA-F]+ { yylval.intval = strtoul(yytext, NULL, 16); return LITERAL; }
+-?[1-9][0-9]* { yylval.intval = atoi(yytext); return LITERAL; }
+[01]+   { yylval.intval = strtoul(yytext, NULL, 2); return LITERAL; }
+\"[^\"]*\"  { yylval.strval = strdup(yytext); return STRING; }
 .             { printf("Greska %s ", yytext); }
