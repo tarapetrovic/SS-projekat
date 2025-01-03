@@ -26,8 +26,8 @@ int yylex();
     char charval;
 }
 
-%token <intval> LITERAL GPRX CSRX
-%token <strval> SYMBOL STRING
+%token <intval> LITERAL GPRX
+%token <strval> SYMBOL STRING CSRX
 
 %%
 program:
@@ -95,7 +95,7 @@ instruction:
     | BGT GPRX COMMA GPRX COMMA LITERAL { printf("BGT GPRX %d COMMA GPRX %d COMMA LITERAL %d ", $2, $4, $6); }
     | BGT GPRX COMMA GPRX COMMA SYMBOL { printf("BGT GPRX %d COMMA GPRX %d COMMA SYMBOL %s ", $2, $4, $6); }
     | PUSH GPRX                { printf("PUSH GPRX %d ", $2); }
-    | POP GPRX                 { printf("POP GPRX %d "), $2; }
+    | POP GPRX                 { printf("POP GPRX %d ", $2); }
     | XCHG GPRX COMMA GPRX     { printf("XCHG GPRX %d COMMA GPRX %d ", $2, $4); }
     | ADD GPRX COMMA GPRX      { printf("ADD GPRX %d COMMA GPRX %d ", $2, $4); }
     | SUB GPRX COMMA GPRX      { printf("SUB GPRX %d COMMA GPRX %d ", $2, $4); }
@@ -120,8 +120,8 @@ instruction:
     | ST GPRX COMMA OPEN_BRACKET GPRX CLOSED_BRACKET { printf("ST GPRX %d COMMA [GPRX %d] ", $2, $5); }
     | ST GPRX COMMA OPEN_BRACKET GPRX PLUS LITERAL CLOSED_BRACKET { printf("ST GPRX %d COMMA [GPRX %d PLUS LITERAL %d] ", $2, $5, $7); }
     | ST GPRX COMMA OPEN_BRACKET GPRX PLUS SYMBOL CLOSED_BRACKET { printf("ST GPRX %d COMMA [GPRX %d PLUS SYMBOL %s] ", $2, $5, $7); }
-    | CSRRD CSRX COMMA GPRX    { printf("CSRRD CSRX %d COMMA GPRX %d ", $2, $4); }
-    | CSRWR GPRX COMMA CSRX    { printf("CSRWR GPRX %d COMMA CSRX %d ", $2, $4); }
+    | CSRRD CSRX COMMA GPRX    { printf("CSRRD CSRX %s COMMA GPRX %d ", $2, $4); }
+    | CSRWR GPRX COMMA CSRX    { printf("CSRWR GPRX %d COMMA CSRX %s ", $2, $4); }
     ;
 %%
 

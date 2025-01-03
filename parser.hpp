@@ -94,9 +94,9 @@ extern int yydebug;
     EOL = 300,
     LITERAL = 301,
     GPRX = 302,
-    CSRX = 303,
-    SYMBOL = 304,
-    STRING = 305
+    SYMBOL = 303,
+    STRING = 304,
+    CSRX = 305
   };
 #endif
 

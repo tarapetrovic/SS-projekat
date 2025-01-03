@@ -173,9 +173,9 @@ extern int yydebug;
     EOL = 300,
     LITERAL = 301,
     GPRX = 302,
-    CSRX = 303,
-    SYMBOL = 304,
-    STRING = 305
+    SYMBOL = 303,
+    STRING = 304,
+    CSRX = 305
   };
 #endif
 
@@ -508,7 +508,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  79
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   230
+#define YYLAST   228
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  51
@@ -589,8 +589,8 @@ static const char *const yytname[] =
   "EXTERN", "SECTION", "WORD", "SKIP", "ASCII", "EQU", "END", "HALT",
   "INT", "IRET", "CALL", "RET", "JMP", "BEQ", "BNE", "BGT", "PUSH", "POP",
   "XCHG", "ADD", "SUB", "MUL", "DIV", "NOT", "AND", "OR", "XOR", "SHL",
-  "SHR", "LD", "ST", "CSRRD", "CSRWR", "EOL", "LITERAL", "GPRX", "CSRX",
-  "SYMBOL", "STRING", "$accept", "program", "line", "statement", "label",
+  "SHR", "LD", "ST", "CSRRD", "CSRWR", "EOL", "LITERAL", "GPRX", "SYMBOL",
+  "STRING", "CSRX", "$accept", "program", "line", "statement", "label",
   "directive", "list_of_global_symbols", "list_of_extern_symbols",
   "list_of_symbols_or_literals", "instruction", YY_NULLPTR
 };
@@ -610,7 +610,7 @@ static const yytype_int16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF (-49)
+#define YYPACT_NINF (-46)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -624,23 +624,23 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int16 yypact[] =
 {
-      50,   -48,   -41,   -11,   -44,    13,    -4,   -49,   -49,   -49,
-     -49,   -43,   -49,     5,    20,    41,    49,    51,    59,    80,
-      97,   101,   102,   103,   104,   105,   106,   107,   108,     1,
-     109,    87,   110,   -49,   153,     0,   -49,    52,    89,   -49,
-     -49,   -49,   155,   -49,   156,   -49,   -49,   -49,   157,   -49,
-     -49,   -49,   -49,   -49,   -49,   158,   159,   160,   -49,   -49,
-     161,   162,   163,   164,   165,   -49,   166,   167,   168,   169,
-       6,   127,   171,   172,   173,   174,   175,   176,   -49,   -49,
-     -49,   -49,   -49,   -49,   132,   133,     7,   136,   137,   138,
-     140,   141,   142,   143,   144,   145,   146,   147,   148,   182,
-     192,     2,   150,   151,   152,    11,   154,   170,   -49,   -49,
-     -49,   -49,   196,   198,   199,   -49,   -49,   -49,   -49,   -49,
-     -49,   -49,   -49,   -49,   177,   178,   200,    88,   -49,   -49,
-     -49,   179,   -49,   -49,   -49,   -49,   -49,    90,    92,    94,
-     -49,   -49,   180,   201,   202,   139,   -49,   -49,   -49,   -49,
-     -49,   -49,   -49,   203,   206,   -49,    96,   181,   183,   204,
-     205,   -49,   -49,   -49,   -49
+      49,   -10,     8,    18,   -45,    41,    55,   -46,   -46,   -46,
+     -46,   -44,   -46,   -41,    78,    95,    96,    97,    98,    99,
+     100,   101,   102,   103,   104,   105,   106,   107,   108,     3,
+     109,    83,   110,   -46,   135,     0,   -46,   113,    87,   -46,
+     -46,   -46,   155,   -46,   156,   -46,   -46,   -46,   157,   -46,
+     -46,   -46,   -46,   -46,   -46,   158,   159,   160,   -46,   -46,
+     161,   162,   163,   164,   165,   -46,   166,   167,   168,   169,
+     -38,   127,   171,   172,   173,   174,   175,   176,   -46,   -46,
+     -46,   -46,   -46,   -46,   133,   134,     6,   136,   137,   138,
+     139,   140,   141,   142,   143,   144,   145,   146,   147,   191,
+     192,    39,   150,   151,   152,    11,   153,   154,   -46,   -46,
+     -46,   -46,   197,   198,   199,   -46,   -46,   -46,   -46,   -46,
+     -46,   -46,   -46,   -46,   170,   177,   201,     7,   -46,   -46,
+     -46,   178,   -46,   -46,   -46,   -46,   -46,    86,    89,    90,
+     -46,   -46,   179,   200,   202,    88,   -46,   -46,   -46,   -46,
+     -46,   -46,   -46,   204,   206,   -46,    93,   180,   181,   205,
+     207,   -46,   -46,   -46,   -46
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -670,7 +670,7 @@ static const yytype_int8 yydefact[] =
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int16 yypgoto[] =
 {
-     -49,   -49,   184,   -49,   -49,   185,   -49,   -49,   -49,   191
+     -46,   -46,   183,   -46,   -46,   182,   -46,   -46,   -46,   184
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
@@ -684,58 +684,56 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-      79,    41,    46,    51,    70,    47,    52,    71,    43,   126,
-     127,     1,     2,     3,     4,     5,     6,   131,     7,     8,
+      79,    46,    51,    47,    52,    53,    70,    54,    99,    71,
+     100,     1,     2,     3,     4,     5,     6,   131,     7,     8,
        9,    10,    11,    12,    13,    14,    15,    16,    17,    18,
-      19,    20,    21,    22,    23,    24,    25,    26,    45,    27,
-      28,    29,    30,    31,    32,    33,    50,    72,    73,    34,
-      74,    53,    99,   110,    54,   100,   111,   132,   133,    49,
-     134,     1,     2,     3,     4,     5,     6,    55,     7,     8,
-       9,    10,    11,    12,    13,    14,    15,    16,    17,    18,
-      19,    20,    21,    22,    23,    24,    25,    26,    56,    27,
-      28,    29,    30,    31,    32,    33,    57,    81,    58,    34,
-       1,     2,     3,     4,     5,     6,    59,     7,     8,     9,
+      19,    20,    21,    22,    23,    24,    25,    26,    41,    27,
+      28,    29,    30,    31,    32,    33,   126,   127,    34,    72,
+      73,    74,   110,   143,   111,   144,    43,   132,   133,   134,
+       1,     2,     3,     4,     5,     6,    45,     7,     8,     9,
       10,    11,    12,    13,    14,    15,    16,    17,    18,    19,
-      20,    21,    22,    23,    24,    25,    26,    60,    27,    28,
-      29,    30,    31,    32,   143,    76,   146,   144,   148,   147,
-     150,   149,   159,   151,    61,   160,   155,   156,    62,    63,
-      64,    65,    66,    67,    68,    69,    75,    77,    78,    84,
+      20,    21,    22,    23,    24,    25,    26,    49,    27,    28,
+      29,    30,    31,    32,    33,   155,   156,    34,     1,     2,
+       3,     4,     5,     6,    50,     7,     8,     9,    10,    11,
+      12,    13,    14,    15,    16,    17,    18,    19,    20,    21,
+      22,    23,    24,    25,    26,    55,    27,    28,    29,    30,
+      31,    32,   146,    76,   147,   148,   150,   149,   151,   159,
+      78,   160,    56,    57,    58,    59,    60,    61,    62,    63,
+      64,    65,    66,    67,    68,    69,    75,    77,    81,    84,
       85,    86,    87,    88,    89,    90,    91,    92,    93,    94,
       95,    96,    97,    98,   101,   102,   103,   104,   105,   106,
-     107,   108,   109,   112,   113,   114,   124,   115,   116,   117,
-     118,   119,   120,   121,   122,   123,   125,   128,   129,   130,
-     137,   135,   138,   139,   142,     0,     0,   157,   153,   154,
-     158,   163,   164,     0,     0,     0,     0,     0,   136,    80,
-       0,     0,     0,    82,   140,   141,   145,   152,   161,    83,
-     162
+     107,   108,   109,   112,   113,   114,   115,   116,   117,   118,
+     119,   120,   121,   122,   123,   124,   125,   128,   129,   130,
+     135,   137,   138,   139,   136,   142,     0,   153,   157,   154,
+     158,     0,   163,     0,   164,     0,     0,   140,    80,     0,
+      82,     0,    83,     0,   141,   145,   152,   161,   162
 };
 
 static const yytype_int8 yycheck[] =
 {
-       0,    49,    46,    46,     3,    49,    49,     6,    49,     7,
-       8,    11,    12,    13,    14,    15,    16,     6,    18,    19,
+       0,    46,    46,    48,    48,    46,     3,    48,    46,     6,
+      48,    11,    12,    13,    14,    15,    16,     6,    18,    19,
       20,    21,    22,    23,    24,    25,    26,    27,    28,    29,
-      30,    31,    32,    33,    34,    35,    36,    37,    49,    39,
-      40,    41,    42,    43,    44,    45,    50,    46,    47,    49,
-      49,    46,    46,    46,    49,    49,    49,    46,    47,    46,
-      49,    11,    12,    13,    14,    15,    16,    47,    18,    19,
-      20,    21,    22,    23,    24,    25,    26,    27,    28,    29,
-      30,    31,    32,    33,    34,    35,    36,    37,    47,    39,
-      40,    41,    42,    43,    44,    45,    47,    45,    47,    49,
-      11,    12,    13,    14,    15,    16,    47,    18,    19,    20,
+      30,    31,    32,    33,    34,    35,    36,    37,    48,    39,
+      40,    41,    42,    43,    44,    45,     7,     8,    48,    46,
+      47,    48,    46,    46,    48,    48,    48,    46,    47,    48,
+      11,    12,    13,    14,    15,    16,    48,    18,    19,    20,
       21,    22,    23,    24,    25,    26,    27,    28,    29,    30,
-      31,    32,    33,    34,    35,    36,    37,    47,    39,    40,
-      41,    42,    43,    44,    46,    48,    46,    49,    46,    49,
-      46,    49,    46,    49,    47,    49,     7,     8,    47,    47,
-      47,    47,    47,    47,    47,    47,    47,    47,     5,     4,
+      31,    32,    33,    34,    35,    36,    37,    46,    39,    40,
+      41,    42,    43,    44,    45,     7,     8,    48,    11,    12,
+      13,    14,    15,    16,    49,    18,    19,    20,    21,    22,
+      23,    24,    25,    26,    27,    28,    29,    30,    31,    32,
+      33,    34,    35,    36,    37,    47,    39,    40,    41,    42,
+      43,    44,    46,    50,    48,    46,    46,    48,    48,    46,
+       5,    48,    47,    47,    47,    47,    47,    47,    47,    47,
+      47,    47,    47,    47,    47,    47,    47,    47,    45,     4,
        4,     4,     4,     4,     4,     4,     4,     4,     4,     4,
        4,     4,     4,     4,    47,     4,     4,     4,     4,     4,
-       4,    49,    49,    47,    47,    47,     4,    47,    47,    47,
-      47,    47,    47,    47,    47,    47,     4,    47,    47,    47,
-       4,    47,     4,     4,     4,    -1,    -1,     4,     7,     7,
-       4,     7,     7,    -1,    -1,    -1,    -1,    -1,    48,    35,
-      -1,    -1,    -1,    38,    47,    47,    47,    47,    47,    38,
-      47
+       4,    48,    48,    47,    47,    47,    47,    47,    47,    47,
+      47,    47,    47,    47,    47,     4,     4,    47,    47,    47,
+      47,     4,     4,     4,    50,     4,    -1,     7,     4,     7,
+       4,    -1,     7,    -1,     7,    -1,    -1,    47,    35,    -1,
+      38,    -1,    38,    -1,    47,    47,    47,    47,    47
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -745,20 +743,20 @@ static const yytype_int8 yystos[] =
        0,    11,    12,    13,    14,    15,    16,    18,    19,    20,
       21,    22,    23,    24,    25,    26,    27,    28,    29,    30,
       31,    32,    33,    34,    35,    36,    37,    39,    40,    41,
-      42,    43,    44,    45,    49,    52,    53,    54,    55,    56,
-      60,    49,    57,    49,    58,    49,    46,    49,    59,    46,
-      50,    46,    49,    46,    49,    47,    47,    47,    47,    47,
+      42,    43,    44,    45,    48,    52,    53,    54,    55,    56,
+      60,    48,    57,    48,    58,    48,    46,    48,    59,    46,
+      49,    46,    48,    46,    48,    47,    47,    47,    47,    47,
       47,    47,    47,    47,    47,    47,    47,    47,    47,    47,
-       3,     6,    46,    47,    49,    47,    48,    47,     5,     0,
+       3,     6,    46,    47,    48,    47,    50,    47,     5,     0,
       53,    45,    56,    60,     4,     4,     4,     4,     4,     4,
        4,     4,     4,     4,     4,     4,     4,     4,     4,    46,
-      49,    47,     4,     4,     4,     4,     4,     4,    49,    49,
-      46,    49,    47,    47,    47,    47,    47,    47,    47,    47,
+      48,    47,     4,     4,     4,     4,     4,     4,    48,    48,
+      46,    48,    47,    47,    47,    47,    47,    47,    47,    47,
       47,    47,    47,    47,     4,     4,     7,     8,    47,    47,
-      47,     6,    46,    47,    49,    47,    48,     4,     4,     4,
-      47,    47,     4,    46,    49,    47,    46,    49,    46,    49,
-      46,    49,    47,     7,     7,     7,     8,     4,     4,    46,
-      49,    47,    47,     7,     7
+      47,     6,    46,    47,    48,    47,    50,     4,     4,     4,
+      47,    47,     4,    46,    48,    47,    46,    48,    46,    48,
+      46,    48,    47,     7,     7,     7,     8,     4,     4,    46,
+      48,    47,    47,     7,     7
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
@@ -1480,347 +1478,347 @@ yyreduce:
   case 4:
 #line 39 "parser.ypp"
                                { printf("\n"); }
-#line 1484 "parser.cpp"
+#line 1482 "parser.cpp"
     break;
 
   case 5:
 #line 40 "parser.ypp"
                                { printf("\n"); }
-#line 1490 "parser.cpp"
+#line 1488 "parser.cpp"
     break;
 
   case 11:
 #line 52 "parser.ypp"
                                { printf("SYMBOL %s COLON ", (yyvsp[-1].strval)); }
-#line 1496 "parser.cpp"
+#line 1494 "parser.cpp"
     break;
 
   case 12:
 #line 56 "parser.ypp"
                                { printf("END "); }
-#line 1502 "parser.cpp"
+#line 1500 "parser.cpp"
     break;
 
   case 13:
 #line 57 "parser.ypp"
                                { printf("SKIP LITERAL %d ", (yyvsp[0].intval)); }
-#line 1508 "parser.cpp"
+#line 1506 "parser.cpp"
     break;
 
   case 14:
 #line 58 "parser.ypp"
                                { printf("ASCII STRING %s ", (yyvsp[0].strval)); }
-#line 1514 "parser.cpp"
+#line 1512 "parser.cpp"
     break;
 
   case 15:
 #line 59 "parser.ypp"
                                { printf("SECTION SYMBOL %s ", (yyvsp[0].strval)); }
-#line 1520 "parser.cpp"
+#line 1518 "parser.cpp"
     break;
 
   case 19:
 #line 66 "parser.ypp"
                                { printf("GLOBAL SYMBOL %s ", (yyvsp[0].strval)); }
-#line 1526 "parser.cpp"
+#line 1524 "parser.cpp"
     break;
 
   case 20:
 #line 67 "parser.ypp"
                                           { printf(" COMMA SYMBOL "); }
-#line 1532 "parser.cpp"
+#line 1530 "parser.cpp"
     break;
 
   case 21:
 #line 71 "parser.ypp"
                                { printf("EXTERN SYMBOL %s ", (yyvsp[0].strval)); }
-#line 1538 "parser.cpp"
+#line 1536 "parser.cpp"
     break;
 
   case 22:
 #line 72 "parser.ypp"
                                           { printf( "COMMA SYMBOL %s ", (yyvsp[0].strval)); }
-#line 1544 "parser.cpp"
+#line 1542 "parser.cpp"
     break;
 
   case 23:
 #line 76 "parser.ypp"
                                { printf("WORD SYMBOL %s ", (yyvsp[0].strval)); }
-#line 1550 "parser.cpp"
+#line 1548 "parser.cpp"
     break;
 
   case 24:
 #line 77 "parser.ypp"
                                { printf("WORD LITERAL %d ", (yyvsp[0].intval)); }
-#line 1556 "parser.cpp"
+#line 1554 "parser.cpp"
     break;
 
   case 25:
 #line 78 "parser.ypp"
                                                { printf("COMMA SYMBOL %s ", (yyvsp[0].strval)); }
-#line 1562 "parser.cpp"
+#line 1560 "parser.cpp"
     break;
 
   case 26:
 #line 79 "parser.ypp"
                                                 { printf("COMMA LITERAL %d ", (yyvsp[0].intval)); }
-#line 1568 "parser.cpp"
+#line 1566 "parser.cpp"
     break;
 
   case 27:
 #line 83 "parser.ypp"
                                { printf("HALT "); }
-#line 1574 "parser.cpp"
+#line 1572 "parser.cpp"
     break;
 
   case 28:
 #line 84 "parser.ypp"
                                { printf("INT "); }
-#line 1580 "parser.cpp"
+#line 1578 "parser.cpp"
     break;
 
   case 29:
 #line 85 "parser.ypp"
                                { printf("IRET "); }
-#line 1586 "parser.cpp"
+#line 1584 "parser.cpp"
     break;
 
   case 30:
 #line 86 "parser.ypp"
                                { printf("CALL LITERAL %d ", (yyvsp[0].intval)); }
-#line 1592 "parser.cpp"
+#line 1590 "parser.cpp"
     break;
 
   case 31:
 #line 87 "parser.ypp"
                                { printf("CALL SYMBOL %s ", (yyvsp[0].strval)); }
-#line 1598 "parser.cpp"
+#line 1596 "parser.cpp"
     break;
 
   case 32:
 #line 88 "parser.ypp"
                                { printf("RET "); }
-#line 1604 "parser.cpp"
+#line 1602 "parser.cpp"
     break;
 
   case 33:
 #line 89 "parser.ypp"
                                { printf("JMP LITERAL %d ", (yyvsp[0].intval)); }
-#line 1610 "parser.cpp"
+#line 1608 "parser.cpp"
     break;
 
   case 34:
 #line 90 "parser.ypp"
                                { printf("JMP SYMBOL %s ", (yyvsp[0].strval)); }
-#line 1616 "parser.cpp"
+#line 1614 "parser.cpp"
     break;
 
   case 35:
 #line 91 "parser.ypp"
                                         { printf("BEQ GPRX %d COMMA GPRX %d COMMA LITERAL %d ", (yyvsp[-4].intval), (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1622 "parser.cpp"
+#line 1620 "parser.cpp"
     break;
 
   case 36:
 #line 92 "parser.ypp"
                                        { printf("BEQ GPRX %d COMMA GPRX %d COMMA SYMBOL %s ", (yyvsp[-4].intval), (yyvsp[-2].intval), (yyvsp[0].strval)); }
-#line 1628 "parser.cpp"
+#line 1626 "parser.cpp"
     break;
 
   case 37:
 #line 93 "parser.ypp"
                                         { printf("BNE GPRX %d COMMA GPRX %d COMMA LITERAL %d ", (yyvsp[-4].intval), (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1634 "parser.cpp"
+#line 1632 "parser.cpp"
     break;
 
   case 38:
 #line 94 "parser.ypp"
                                        { printf("BNE GPRX %d COMMA GPRX %d COMMA SYMBOL %s ", (yyvsp[-4].intval), (yyvsp[-2].intval), (yyvsp[0].strval)); }
-#line 1640 "parser.cpp"
+#line 1638 "parser.cpp"
     break;
 
   case 39:
 #line 95 "parser.ypp"
                                         { printf("BGT GPRX %d COMMA GPRX %d COMMA LITERAL %d ", (yyvsp[-4].intval), (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1646 "parser.cpp"
+#line 1644 "parser.cpp"
     break;
 
   case 40:
 #line 96 "parser.ypp"
                                        { printf("BGT GPRX %d COMMA GPRX %d COMMA SYMBOL %s ", (yyvsp[-4].intval), (yyvsp[-2].intval), (yyvsp[0].strval)); }
-#line 1652 "parser.cpp"
+#line 1650 "parser.cpp"
     break;
 
   case 41:
 #line 97 "parser.ypp"
                                { printf("PUSH GPRX %d ", (yyvsp[0].intval)); }
-#line 1658 "parser.cpp"
+#line 1656 "parser.cpp"
     break;
 
   case 42:
 #line 98 "parser.ypp"
-                               { printf("POP GPRX %d "), (yyvsp[0].intval); }
-#line 1664 "parser.cpp"
+                               { printf("POP GPRX %d ", (yyvsp[0].intval)); }
+#line 1662 "parser.cpp"
     break;
 
   case 43:
 #line 99 "parser.ypp"
                                { printf("XCHG GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1670 "parser.cpp"
+#line 1668 "parser.cpp"
     break;
 
   case 44:
 #line 100 "parser.ypp"
                                { printf("ADD GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1676 "parser.cpp"
+#line 1674 "parser.cpp"
     break;
 
   case 45:
 #line 101 "parser.ypp"
                                { printf("SUB GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1682 "parser.cpp"
+#line 1680 "parser.cpp"
     break;
 
   case 46:
 #line 102 "parser.ypp"
                                { printf("MUL GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1688 "parser.cpp"
+#line 1686 "parser.cpp"
     break;
 
   case 47:
 #line 103 "parser.ypp"
                                { printf("DIV GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1694 "parser.cpp"
+#line 1692 "parser.cpp"
     break;
 
   case 48:
 #line 104 "parser.ypp"
                                { printf("NOT GPRX %d ", (yyvsp[0].intval)); }
-#line 1700 "parser.cpp"
+#line 1698 "parser.cpp"
     break;
 
   case 49:
 #line 105 "parser.ypp"
                                { printf("AND GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1706 "parser.cpp"
+#line 1704 "parser.cpp"
     break;
 
   case 50:
 #line 106 "parser.ypp"
                                { printf("OR GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1712 "parser.cpp"
+#line 1710 "parser.cpp"
     break;
 
   case 51:
 #line 107 "parser.ypp"
                                { printf("SHL GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1718 "parser.cpp"
+#line 1716 "parser.cpp"
     break;
 
   case 52:
 #line 108 "parser.ypp"
                                { printf("SHR GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1724 "parser.cpp"
+#line 1722 "parser.cpp"
     break;
 
   case 53:
 #line 109 "parser.ypp"
                                         { printf("LD DOLLAR_SIGN LITERAL %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1730 "parser.cpp"
+#line 1728 "parser.cpp"
     break;
 
   case 54:
 #line 110 "parser.ypp"
                                        { printf("LD DOLLAR_SIGN SYMBOL %s COMMA GPRX %d ", (yyvsp[-2].strval), (yyvsp[0].intval)); }
-#line 1736 "parser.cpp"
+#line 1734 "parser.cpp"
     break;
 
   case 55:
 #line 111 "parser.ypp"
                                { printf("LD LITERAL %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1742 "parser.cpp"
+#line 1740 "parser.cpp"
     break;
 
   case 56:
 #line 112 "parser.ypp"
                                { printf("LD SYMBOL %s COMMA GPRX %d ", (yyvsp[-2].strval), (yyvsp[0].intval)); }
-#line 1748 "parser.cpp"
+#line 1746 "parser.cpp"
     break;
 
   case 57:
 #line 113 "parser.ypp"
                                { printf("LD GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1754 "parser.cpp"
+#line 1752 "parser.cpp"
     break;
 
   case 58:
 #line 114 "parser.ypp"
                                                      { printf("LD [GPRX %d] COMMA GPRX %d ", (yyvsp[-3].intval), (yyvsp[0].intval)); }
-#line 1760 "parser.cpp"
+#line 1758 "parser.cpp"
     break;
 
   case 59:
 #line 115 "parser.ypp"
                                                                   { printf("LD [GPRX %d PLUS LITERAL %d] COMMA GPRX %d ", (yyvsp[-5].intval), (yyvsp[-3].intval), (yyvsp[0].intval)); }
-#line 1766 "parser.cpp"
+#line 1764 "parser.cpp"
     break;
 
   case 60:
 #line 116 "parser.ypp"
                                                                  { printf("LD [GPRX %d PLUS SYMBOL %s] COMMA GPRX %d ", (yyvsp[-5].intval), (yyvsp[-3].strval), (yyvsp[0].intval)); }
-#line 1772 "parser.cpp"
+#line 1770 "parser.cpp"
     break;
 
   case 61:
 #line 117 "parser.ypp"
                                { printf("ST GPRX %d COMMA LITERAL %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1778 "parser.cpp"
+#line 1776 "parser.cpp"
     break;
 
   case 62:
 #line 118 "parser.ypp"
                                { printf("ST GPRX %d COMMA SYMBOL %s ", (yyvsp[-2].intval), (yyvsp[0].strval)); }
-#line 1784 "parser.cpp"
+#line 1782 "parser.cpp"
     break;
 
   case 63:
 #line 119 "parser.ypp"
                                { printf("ST GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1790 "parser.cpp"
+#line 1788 "parser.cpp"
     break;
 
   case 64:
 #line 120 "parser.ypp"
                                                      { printf("ST GPRX %d COMMA [GPRX %d] ", (yyvsp[-4].intval), (yyvsp[-1].intval)); }
-#line 1796 "parser.cpp"
+#line 1794 "parser.cpp"
     break;
 
   case 65:
 #line 121 "parser.ypp"
                                                                   { printf("ST GPRX %d COMMA [GPRX %d PLUS LITERAL %d] ", (yyvsp[-6].intval), (yyvsp[-3].intval), (yyvsp[-1].intval)); }
-#line 1802 "parser.cpp"
+#line 1800 "parser.cpp"
     break;
 
   case 66:
 #line 122 "parser.ypp"
                                                                  { printf("ST GPRX %d COMMA [GPRX %d PLUS SYMBOL %s] ", (yyvsp[-6].intval), (yyvsp[-3].intval), (yyvsp[-1].strval)); }
-#line 1808 "parser.cpp"
+#line 1806 "parser.cpp"
     break;
 
   case 67:
 #line 123 "parser.ypp"
-                               { printf("CSRRD CSRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1814 "parser.cpp"
+                               { printf("CSRRD CSRX %s COMMA GPRX %d ", (yyvsp[-2].strval), (yyvsp[0].intval)); }
+#line 1812 "parser.cpp"
     break;
 
   case 68:
 #line 124 "parser.ypp"
-                               { printf("CSRWR GPRX %d COMMA CSRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
-#line 1820 "parser.cpp"
+                               { printf("CSRWR GPRX %d COMMA CSRX %s ", (yyvsp[-2].intval), (yyvsp[0].strval)); }
+#line 1818 "parser.cpp"
     break;
 
 
-#line 1824 "parser.cpp"
+#line 1822 "parser.cpp"
 
       default: break;
     }

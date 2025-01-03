@@ -1110,7 +1110,7 @@ YY_RULE_SETUP
 case 48:
 YY_RULE_SETUP
 #line 59 "lekser.l"
-{ yylval.strval = strdup("pc"); return GPRX; }
+{ yylval.strval = strdup("pc"); return GPRX; } // prosledjujem li ime kao pc, ili da ga odavde odmah prosledim kao 15? to ce mi biti greska
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
