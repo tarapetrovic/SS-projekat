@@ -72,15 +72,21 @@
     yydebug = 1;
 #endif
 
+#ifndef PARSER_HPP
+#define PARSER_HPP
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "parser.hpp"
+#include "assembler.hpp"
+
+extern Assembler assembler;
 
 // Function declaration
 int yyerror(const char *s);
 int yylex();
 
-#line 84 "parser.cpp"
+#line 90 "parser.cpp"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -183,13 +189,13 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 23 "parser.ypp"
+#line 29 "parser.ypp"
 
     int intval;
     char *strval;
     char charval;
 
-#line 193 "parser.cpp"
+#line 199 "parser.cpp"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -567,15 +573,15 @@ static const yytype_int8 yytranslate[] =
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
-static const yytype_int8 yyrline[] =
+static const yytype_uint8 yyrline[] =
 {
-       0,    34,    34,    35,    39,    40,    44,    45,    46,    47,
-      48,    52,    56,    57,    58,    59,    60,    61,    62,    66,
-      67,    71,    72,    76,    77,    78,    79,    83,    84,    85,
-      86,    87,    88,    89,    90,    91,    92,    93,    94,    95,
-      96,    97,    98,    99,   100,   101,   102,   103,   104,   105,
-     106,   107,   108,   109,   110,   111,   112,   113,   114,   115,
-     116,   117,   118,   119,   120,   121,   122,   123,   124
+       0,    40,    40,    41,    45,    46,    50,    51,    52,    53,
+      54,    58,    62,    63,    64,    65,    66,    67,    68,    72,
+      73,    77,    78,    82,    83,    84,    85,    89,    90,    91,
+      92,    93,    94,    95,    96,    97,    98,    99,   100,   101,
+     102,   103,   104,   105,   106,   107,   108,   109,   110,   111,
+     112,   113,   114,   115,   116,   117,   118,   119,   120,   121,
+     122,   123,   124,   125,   126,   127,   128,   129,   130
 };
 #endif
 
@@ -1476,349 +1482,349 @@ yyreduce:
   switch (yyn)
     {
   case 4:
-#line 39 "parser.ypp"
-                               { printf("\n"); }
-#line 1482 "parser.cpp"
-    break;
-
-  case 5:
-#line 40 "parser.ypp"
+#line 45 "parser.ypp"
                                { printf("\n"); }
 #line 1488 "parser.cpp"
     break;
 
-  case 11:
-#line 52 "parser.ypp"
-                               { printf("SYMBOL %s COLON ", (yyvsp[-1].strval)); }
+  case 5:
+#line 46 "parser.ypp"
+                               { printf("\n"); }
 #line 1494 "parser.cpp"
     break;
 
-  case 12:
-#line 56 "parser.ypp"
-                               { printf("END "); }
+  case 11:
+#line 58 "parser.ypp"
+                               { printf("SYMBOL %s COLON ", (yyvsp[-1].strval)); }
 #line 1500 "parser.cpp"
     break;
 
-  case 13:
-#line 57 "parser.ypp"
-                               { printf("SKIP LITERAL %d ", (yyvsp[0].intval)); }
+  case 12:
+#line 62 "parser.ypp"
+                               { printf("END "); }
 #line 1506 "parser.cpp"
     break;
 
-  case 14:
-#line 58 "parser.ypp"
-                               { printf("ASCII STRING %s ", (yyvsp[0].strval)); }
+  case 13:
+#line 63 "parser.ypp"
+                               { printf("SKIP LITERAL %d ", (yyvsp[0].intval)); }
 #line 1512 "parser.cpp"
     break;
 
-  case 15:
-#line 59 "parser.ypp"
-                               { printf("SECTION SYMBOL %s ", (yyvsp[0].strval)); }
+  case 14:
+#line 64 "parser.ypp"
+                               { printf("ASCII STRING %s ", (yyvsp[0].strval)); }
 #line 1518 "parser.cpp"
     break;
 
-  case 19:
-#line 66 "parser.ypp"
-                               { printf("GLOBAL SYMBOL %s ", (yyvsp[0].strval)); }
+  case 15:
+#line 65 "parser.ypp"
+                               { printf("SECTION SYMBOL %s ", (yyvsp[0].strval)); }
 #line 1524 "parser.cpp"
     break;
 
-  case 20:
-#line 67 "parser.ypp"
-                                          { printf(" COMMA SYMBOL "); }
+  case 19:
+#line 72 "parser.ypp"
+                               { printf("GLOBAL SYMBOL %s ", (yyvsp[0].strval)); }
 #line 1530 "parser.cpp"
     break;
 
-  case 21:
-#line 71 "parser.ypp"
-                               { printf("EXTERN SYMBOL %s ", (yyvsp[0].strval)); }
+  case 20:
+#line 73 "parser.ypp"
+                                          { printf(" COMMA SYMBOL "); }
 #line 1536 "parser.cpp"
     break;
 
-  case 22:
-#line 72 "parser.ypp"
-                                          { printf( "COMMA SYMBOL %s ", (yyvsp[0].strval)); }
+  case 21:
+#line 77 "parser.ypp"
+                               { printf("EXTERN SYMBOL %s ", (yyvsp[0].strval)); }
 #line 1542 "parser.cpp"
     break;
 
-  case 23:
-#line 76 "parser.ypp"
-                               { printf("WORD SYMBOL %s ", (yyvsp[0].strval)); }
+  case 22:
+#line 78 "parser.ypp"
+                                          { printf( "COMMA SYMBOL %s ", (yyvsp[0].strval)); }
 #line 1548 "parser.cpp"
     break;
 
-  case 24:
-#line 77 "parser.ypp"
-                               { printf("WORD LITERAL %d ", (yyvsp[0].intval)); }
+  case 23:
+#line 82 "parser.ypp"
+                               { printf("WORD SYMBOL %s ", (yyvsp[0].strval)); }
 #line 1554 "parser.cpp"
     break;
 
-  case 25:
-#line 78 "parser.ypp"
-                                               { printf("COMMA SYMBOL %s ", (yyvsp[0].strval)); }
+  case 24:
+#line 83 "parser.ypp"
+                               { printf("WORD LITERAL %d ", (yyvsp[0].intval)); }
 #line 1560 "parser.cpp"
     break;
 
-  case 26:
-#line 79 "parser.ypp"
-                                                { printf("COMMA LITERAL %d ", (yyvsp[0].intval)); }
+  case 25:
+#line 84 "parser.ypp"
+                                               { printf("COMMA SYMBOL %s ", (yyvsp[0].strval)); }
 #line 1566 "parser.cpp"
     break;
 
-  case 27:
-#line 83 "parser.ypp"
-                               { printf("HALT "); }
+  case 26:
+#line 85 "parser.ypp"
+                                                { printf("COMMA LITERAL %d ", (yyvsp[0].intval)); }
 #line 1572 "parser.cpp"
     break;
 
-  case 28:
-#line 84 "parser.ypp"
-                               { printf("INT "); }
+  case 27:
+#line 89 "parser.ypp"
+                               { printf("HALT "); }
 #line 1578 "parser.cpp"
     break;
 
-  case 29:
-#line 85 "parser.ypp"
-                               { printf("IRET "); }
+  case 28:
+#line 90 "parser.ypp"
+                               { printf("INT "); }
 #line 1584 "parser.cpp"
     break;
 
-  case 30:
-#line 86 "parser.ypp"
-                               { printf("CALL LITERAL %d ", (yyvsp[0].intval)); }
+  case 29:
+#line 91 "parser.ypp"
+                               { printf("IRET "); }
 #line 1590 "parser.cpp"
     break;
 
-  case 31:
-#line 87 "parser.ypp"
-                               { printf("CALL SYMBOL %s ", (yyvsp[0].strval)); }
+  case 30:
+#line 92 "parser.ypp"
+                               { printf("CALL LITERAL %d ", (yyvsp[0].intval)); }
 #line 1596 "parser.cpp"
     break;
 
-  case 32:
-#line 88 "parser.ypp"
-                               { printf("RET "); }
+  case 31:
+#line 93 "parser.ypp"
+                               { printf("CALL SYMBOL %s ", (yyvsp[0].strval)); }
 #line 1602 "parser.cpp"
     break;
 
-  case 33:
-#line 89 "parser.ypp"
-                               { printf("JMP LITERAL %d ", (yyvsp[0].intval)); }
+  case 32:
+#line 94 "parser.ypp"
+                               { printf("RET "); }
 #line 1608 "parser.cpp"
     break;
 
-  case 34:
-#line 90 "parser.ypp"
-                               { printf("JMP SYMBOL %s ", (yyvsp[0].strval)); }
+  case 33:
+#line 95 "parser.ypp"
+                               { printf("JMP LITERAL %d ", (yyvsp[0].intval)); }
 #line 1614 "parser.cpp"
     break;
 
-  case 35:
-#line 91 "parser.ypp"
-                                        { printf("BEQ GPRX %d COMMA GPRX %d COMMA LITERAL %d ", (yyvsp[-4].intval), (yyvsp[-2].intval), (yyvsp[0].intval)); }
+  case 34:
+#line 96 "parser.ypp"
+                               { printf("JMP SYMBOL %s ", (yyvsp[0].strval)); }
 #line 1620 "parser.cpp"
     break;
 
-  case 36:
-#line 92 "parser.ypp"
-                                       { printf("BEQ GPRX %d COMMA GPRX %d COMMA SYMBOL %s ", (yyvsp[-4].intval), (yyvsp[-2].intval), (yyvsp[0].strval)); }
+  case 35:
+#line 97 "parser.ypp"
+                                        { printf("BEQ GPRX %d COMMA GPRX %d COMMA LITERAL %d ", (yyvsp[-4].intval), (yyvsp[-2].intval), (yyvsp[0].intval)); }
 #line 1626 "parser.cpp"
     break;
 
-  case 37:
-#line 93 "parser.ypp"
-                                        { printf("BNE GPRX %d COMMA GPRX %d COMMA LITERAL %d ", (yyvsp[-4].intval), (yyvsp[-2].intval), (yyvsp[0].intval)); }
+  case 36:
+#line 98 "parser.ypp"
+                                       { printf("BEQ GPRX %d COMMA GPRX %d COMMA SYMBOL %s ", (yyvsp[-4].intval), (yyvsp[-2].intval), (yyvsp[0].strval)); }
 #line 1632 "parser.cpp"
     break;
 
-  case 38:
-#line 94 "parser.ypp"
-                                       { printf("BNE GPRX %d COMMA GPRX %d COMMA SYMBOL %s ", (yyvsp[-4].intval), (yyvsp[-2].intval), (yyvsp[0].strval)); }
+  case 37:
+#line 99 "parser.ypp"
+                                        { printf("BNE GPRX %d COMMA GPRX %d COMMA LITERAL %d ", (yyvsp[-4].intval), (yyvsp[-2].intval), (yyvsp[0].intval)); }
 #line 1638 "parser.cpp"
     break;
 
-  case 39:
-#line 95 "parser.ypp"
-                                        { printf("BGT GPRX %d COMMA GPRX %d COMMA LITERAL %d ", (yyvsp[-4].intval), (yyvsp[-2].intval), (yyvsp[0].intval)); }
+  case 38:
+#line 100 "parser.ypp"
+                                       { printf("BNE GPRX %d COMMA GPRX %d COMMA SYMBOL %s ", (yyvsp[-4].intval), (yyvsp[-2].intval), (yyvsp[0].strval)); }
 #line 1644 "parser.cpp"
     break;
 
-  case 40:
-#line 96 "parser.ypp"
-                                       { printf("BGT GPRX %d COMMA GPRX %d COMMA SYMBOL %s ", (yyvsp[-4].intval), (yyvsp[-2].intval), (yyvsp[0].strval)); }
+  case 39:
+#line 101 "parser.ypp"
+                                        { printf("BGT GPRX %d COMMA GPRX %d COMMA LITERAL %d ", (yyvsp[-4].intval), (yyvsp[-2].intval), (yyvsp[0].intval)); }
 #line 1650 "parser.cpp"
     break;
 
-  case 41:
-#line 97 "parser.ypp"
-                               { printf("PUSH GPRX %d ", (yyvsp[0].intval)); }
+  case 40:
+#line 102 "parser.ypp"
+                                       { printf("BGT GPRX %d COMMA GPRX %d COMMA SYMBOL %s ", (yyvsp[-4].intval), (yyvsp[-2].intval), (yyvsp[0].strval)); }
 #line 1656 "parser.cpp"
     break;
 
-  case 42:
-#line 98 "parser.ypp"
-                               { printf("POP GPRX %d ", (yyvsp[0].intval)); }
+  case 41:
+#line 103 "parser.ypp"
+                               { assembler.dummy_fja(); printf("PUSH GPRX %d ", (yyvsp[0].intval)); }
 #line 1662 "parser.cpp"
     break;
 
-  case 43:
-#line 99 "parser.ypp"
-                               { printf("XCHG GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
+  case 42:
+#line 104 "parser.ypp"
+                               { assembler.dummy_fja(); printf("POP GPRX %d ", (yyvsp[0].intval)); }
 #line 1668 "parser.cpp"
     break;
 
-  case 44:
-#line 100 "parser.ypp"
-                               { printf("ADD GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
+  case 43:
+#line 105 "parser.ypp"
+                               { printf("XCHG GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
 #line 1674 "parser.cpp"
     break;
 
-  case 45:
-#line 101 "parser.ypp"
-                               { printf("SUB GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
+  case 44:
+#line 106 "parser.ypp"
+                               { printf("ADD GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
 #line 1680 "parser.cpp"
     break;
 
-  case 46:
-#line 102 "parser.ypp"
-                               { printf("MUL GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
+  case 45:
+#line 107 "parser.ypp"
+                               { printf("SUB GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
 #line 1686 "parser.cpp"
     break;
 
-  case 47:
-#line 103 "parser.ypp"
-                               { printf("DIV GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
+  case 46:
+#line 108 "parser.ypp"
+                               { printf("MUL GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
 #line 1692 "parser.cpp"
     break;
 
-  case 48:
-#line 104 "parser.ypp"
-                               { printf("NOT GPRX %d ", (yyvsp[0].intval)); }
+  case 47:
+#line 109 "parser.ypp"
+                               { printf("DIV GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
 #line 1698 "parser.cpp"
     break;
 
-  case 49:
-#line 105 "parser.ypp"
-                               { printf("AND GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
+  case 48:
+#line 110 "parser.ypp"
+                               { printf("NOT GPRX %d ", (yyvsp[0].intval)); }
 #line 1704 "parser.cpp"
     break;
 
-  case 50:
-#line 106 "parser.ypp"
-                               { printf("OR GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
+  case 49:
+#line 111 "parser.ypp"
+                               { printf("AND GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
 #line 1710 "parser.cpp"
     break;
 
-  case 51:
-#line 107 "parser.ypp"
-                               { printf("SHL GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
+  case 50:
+#line 112 "parser.ypp"
+                               { printf("OR GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
 #line 1716 "parser.cpp"
     break;
 
-  case 52:
-#line 108 "parser.ypp"
-                               { printf("SHR GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
+  case 51:
+#line 113 "parser.ypp"
+                               { printf("SHL GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
 #line 1722 "parser.cpp"
     break;
 
-  case 53:
-#line 109 "parser.ypp"
-                                        { printf("LD DOLLAR_SIGN LITERAL %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
+  case 52:
+#line 114 "parser.ypp"
+                               { printf("SHR GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
 #line 1728 "parser.cpp"
     break;
 
-  case 54:
-#line 110 "parser.ypp"
-                                       { printf("LD DOLLAR_SIGN SYMBOL %s COMMA GPRX %d ", (yyvsp[-2].strval), (yyvsp[0].intval)); }
+  case 53:
+#line 115 "parser.ypp"
+                                        { assembler.dummy_fja(); printf("LD DOLLAR_SIGN LITERAL %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
 #line 1734 "parser.cpp"
     break;
 
-  case 55:
-#line 111 "parser.ypp"
-                               { printf("LD LITERAL %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
+  case 54:
+#line 116 "parser.ypp"
+                                       { printf("LD DOLLAR_SIGN SYMBOL %s COMMA GPRX %d ", (yyvsp[-2].strval), (yyvsp[0].intval)); }
 #line 1740 "parser.cpp"
     break;
 
-  case 56:
-#line 112 "parser.ypp"
-                               { printf("LD SYMBOL %s COMMA GPRX %d ", (yyvsp[-2].strval), (yyvsp[0].intval)); }
+  case 55:
+#line 117 "parser.ypp"
+                               { printf("LD LITERAL %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
 #line 1746 "parser.cpp"
     break;
 
-  case 57:
-#line 113 "parser.ypp"
-                               { printf("LD GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
+  case 56:
+#line 118 "parser.ypp"
+                               { printf("LD SYMBOL %s COMMA GPRX %d ", (yyvsp[-2].strval), (yyvsp[0].intval)); }
 #line 1752 "parser.cpp"
     break;
 
-  case 58:
-#line 114 "parser.ypp"
-                                                     { printf("LD [GPRX %d] COMMA GPRX %d ", (yyvsp[-3].intval), (yyvsp[0].intval)); }
+  case 57:
+#line 119 "parser.ypp"
+                               { printf("LD GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
 #line 1758 "parser.cpp"
     break;
 
-  case 59:
-#line 115 "parser.ypp"
-                                                                  { printf("LD [GPRX %d PLUS LITERAL %d] COMMA GPRX %d ", (yyvsp[-5].intval), (yyvsp[-3].intval), (yyvsp[0].intval)); }
+  case 58:
+#line 120 "parser.ypp"
+                                                     { printf("LD [GPRX %d] COMMA GPRX %d ", (yyvsp[-3].intval), (yyvsp[0].intval)); }
 #line 1764 "parser.cpp"
     break;
 
-  case 60:
-#line 116 "parser.ypp"
-                                                                 { printf("LD [GPRX %d PLUS SYMBOL %s] COMMA GPRX %d ", (yyvsp[-5].intval), (yyvsp[-3].strval), (yyvsp[0].intval)); }
+  case 59:
+#line 121 "parser.ypp"
+                                                                  { printf("LD [GPRX %d PLUS LITERAL %d] COMMA GPRX %d ", (yyvsp[-5].intval), (yyvsp[-3].intval), (yyvsp[0].intval)); }
 #line 1770 "parser.cpp"
     break;
 
-  case 61:
-#line 117 "parser.ypp"
-                               { printf("ST GPRX %d COMMA LITERAL %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
+  case 60:
+#line 122 "parser.ypp"
+                                                                 { printf("LD [GPRX %d PLUS SYMBOL %s] COMMA GPRX %d ", (yyvsp[-5].intval), (yyvsp[-3].strval), (yyvsp[0].intval)); }
 #line 1776 "parser.cpp"
     break;
 
-  case 62:
-#line 118 "parser.ypp"
-                               { printf("ST GPRX %d COMMA SYMBOL %s ", (yyvsp[-2].intval), (yyvsp[0].strval)); }
+  case 61:
+#line 123 "parser.ypp"
+                               { assembler.dummy_fja(); printf("ST GPRX %d COMMA LITERAL %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
 #line 1782 "parser.cpp"
     break;
 
-  case 63:
-#line 119 "parser.ypp"
-                               { printf("ST GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
+  case 62:
+#line 124 "parser.ypp"
+                               { printf("ST GPRX %d COMMA SYMBOL %s ", (yyvsp[-2].intval), (yyvsp[0].strval)); }
 #line 1788 "parser.cpp"
     break;
 
-  case 64:
-#line 120 "parser.ypp"
-                                                     { printf("ST GPRX %d COMMA [GPRX %d] ", (yyvsp[-4].intval), (yyvsp[-1].intval)); }
+  case 63:
+#line 125 "parser.ypp"
+                               { printf("ST GPRX %d COMMA GPRX %d ", (yyvsp[-2].intval), (yyvsp[0].intval)); }
 #line 1794 "parser.cpp"
     break;
 
-  case 65:
-#line 121 "parser.ypp"
-                                                                  { printf("ST GPRX %d COMMA [GPRX %d PLUS LITERAL %d] ", (yyvsp[-6].intval), (yyvsp[-3].intval), (yyvsp[-1].intval)); }
+  case 64:
+#line 126 "parser.ypp"
+                                                     { printf("ST GPRX %d COMMA [GPRX %d] ", (yyvsp[-4].intval), (yyvsp[-1].intval)); }
 #line 1800 "parser.cpp"
     break;
 
-  case 66:
-#line 122 "parser.ypp"
-                                                                 { printf("ST GPRX %d COMMA [GPRX %d PLUS SYMBOL %s] ", (yyvsp[-6].intval), (yyvsp[-3].intval), (yyvsp[-1].strval)); }
+  case 65:
+#line 127 "parser.ypp"
+                                                                  { printf("ST GPRX %d COMMA [GPRX %d PLUS LITERAL %d] ", (yyvsp[-6].intval), (yyvsp[-3].intval), (yyvsp[-1].intval)); }
 #line 1806 "parser.cpp"
     break;
 
-  case 67:
-#line 123 "parser.ypp"
-                               { printf("CSRRD CSRX %s COMMA GPRX %d ", (yyvsp[-2].strval), (yyvsp[0].intval)); }
+  case 66:
+#line 128 "parser.ypp"
+                                                                 { printf("ST GPRX %d COMMA [GPRX %d PLUS SYMBOL %s] ", (yyvsp[-6].intval), (yyvsp[-3].intval), (yyvsp[-1].strval)); }
 #line 1812 "parser.cpp"
     break;
 
-  case 68:
-#line 124 "parser.ypp"
-                               { printf("CSRWR GPRX %d COMMA CSRX %s ", (yyvsp[-2].intval), (yyvsp[0].strval)); }
+  case 67:
+#line 129 "parser.ypp"
+                               { printf("CSRRD CSRX %s COMMA GPRX %d ", (yyvsp[-2].strval), (yyvsp[0].intval)); }
 #line 1818 "parser.cpp"
     break;
 
+  case 68:
+#line 130 "parser.ypp"
+                               { printf("CSRWR GPRX %d COMMA CSRX %s ", (yyvsp[-2].intval), (yyvsp[0].strval)); }
+#line 1824 "parser.cpp"
+    break;
 
-#line 1822 "parser.cpp"
+
+#line 1828 "parser.cpp"
 
       default: break;
     }
@@ -2050,7 +2056,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 126 "parser.ypp"
+#line 132 "parser.ypp"
 
 
 
@@ -2059,5 +2065,5 @@ int yyerror(const char *s){
     return 0;
 }
 
-
+#endif
 

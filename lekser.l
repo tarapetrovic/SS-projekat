@@ -2,6 +2,9 @@
 //inicijalizacije? includovi za 3. deo leksera? include parsera
 #include <stdio.h>
 #include "parser.hpp"
+#include "assembler.hpp"
+
+extern Assembler assembler;
 
 extern YYSTYPE yylval;
 %}

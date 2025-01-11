@@ -3,9 +3,15 @@
     yydebug = 1;
 #endif
 
+#ifndef PARSER_HPP
+#define PARSER_HPP
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "parser.hpp"
+#include "assembler.hpp"
+
+extern Assembler assembler;
 
 // Function declaration
 int yyerror(const char *s);
@@ -94,8 +100,8 @@ instruction:
     | BNE GPRX COMMA GPRX COMMA SYMBOL { printf("BNE GPRX %d COMMA GPRX %d COMMA SYMBOL %s ", $2, $4, $6); }
     | BGT GPRX COMMA GPRX COMMA LITERAL { printf("BGT GPRX %d COMMA GPRX %d COMMA LITERAL %d ", $2, $4, $6); }
     | BGT GPRX COMMA GPRX COMMA SYMBOL { printf("BGT GPRX %d COMMA GPRX %d COMMA SYMBOL %s ", $2, $4, $6); }
-    | PUSH GPRX                { printf("PUSH GPRX %d ", $2); }
-    | POP GPRX                 { printf("POP GPRX %d ", $2); }
+    | PUSH GPRX                { assembler.dummy_fja(); printf("PUSH GPRX %d ", $2); }
+    | POP GPRX                 { assembler.dummy_fja(); printf("POP GPRX %d ", $2); }
     | XCHG GPRX COMMA GPRX     { printf("XCHG GPRX %d COMMA GPRX %d ", $2, $4); }
     | ADD GPRX COMMA GPRX      { printf("ADD GPRX %d COMMA GPRX %d ", $2, $4); }
     | SUB GPRX COMMA GPRX      { printf("SUB GPRX %d COMMA GPRX %d ", $2, $4); }
@@ -106,7 +112,7 @@ instruction:
     | OR GPRX COMMA GPRX       { printf("OR GPRX %d COMMA GPRX %d ", $2, $4); }
     | SHL GPRX COMMA GPRX      { printf("SHL GPRX %d COMMA GPRX %d ", $2, $4); }
     | SHR GPRX COMMA GPRX      { printf("SHR GPRX %d COMMA GPRX %d ", $2, $4); }
-    | LD DOLLAR_SIGN LITERAL COMMA GPRX { printf("LD DOLLAR_SIGN LITERAL %d COMMA GPRX %d ", $3, $5); }
+    | LD DOLLAR_SIGN LITERAL COMMA GPRX { assembler.dummy_fja(); printf("LD DOLLAR_SIGN LITERAL %d COMMA GPRX %d ", $3, $5); }
     | LD DOLLAR_SIGN SYMBOL COMMA GPRX { printf("LD DOLLAR_SIGN SYMBOL %s COMMA GPRX %d ", $3, $5); }
     | LD LITERAL COMMA GPRX    { printf("LD LITERAL %d COMMA GPRX %d ", $2, $4); }
     | LD SYMBOL COMMA GPRX     { printf("LD SYMBOL %s COMMA GPRX %d ", $2, $4); }
@@ -114,7 +120,7 @@ instruction:
     | LD OPEN_BRACKET GPRX CLOSED_BRACKET COMMA GPRX { printf("LD [GPRX %d] COMMA GPRX %d ", $3, $6); }
     | LD OPEN_BRACKET GPRX PLUS LITERAL CLOSED_BRACKET COMMA GPRX { printf("LD [GPRX %d PLUS LITERAL %d] COMMA GPRX %d ", $3, $5, $8); }
     | LD OPEN_BRACKET GPRX PLUS SYMBOL CLOSED_BRACKET COMMA GPRX { printf("LD [GPRX %d PLUS SYMBOL %s] COMMA GPRX %d ", $3, $5, $8); }
-    | ST GPRX COMMA LITERAL    { printf("ST GPRX %d COMMA LITERAL %d ", $2, $4); }
+    | ST GPRX COMMA LITERAL    { assembler.dummy_fja(); printf("ST GPRX %d COMMA LITERAL %d ", $2, $4); }
     | ST GPRX COMMA SYMBOL     { printf("ST GPRX %d COMMA SYMBOL %s ", $2, $4); }
     | ST GPRX COMMA GPRX       { printf("ST GPRX %d COMMA GPRX %d ", $2, $4); }
     | ST GPRX COMMA OPEN_BRACKET GPRX CLOSED_BRACKET { printf("ST GPRX %d COMMA [GPRX %d] ", $2, $5); }
@@ -131,5 +137,5 @@ int yyerror(const char *s){
     return 0;
 }
 
-
+#endif
 
